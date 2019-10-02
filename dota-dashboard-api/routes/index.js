@@ -2,13 +2,15 @@ const express = require('express')
 const { openDotaController } = require('../controllers')
 const router = express.Router();
 
-router.get('/matchHistory', (req, res) => {
-    console.log(req.body)
+router.get('/matchHistory', async (req, res) => {
+    console.log(req.query)
 
-    const { accountID_list, username } = req.body
+    const accounts = req.query.accounts
 
-    openDotaController.getMatchHistory(accountID_list).then(result => {
-        res.send(result)
+    await openDotaController.getMatchHistory(accounts).then(result => {
+        res.status(200).send(result)
+    }).catch(error => {
+        res.status(403).send(error)
     })
 })
 

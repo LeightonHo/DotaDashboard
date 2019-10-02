@@ -1,9 +1,14 @@
 const { openDotaService } = require("../services")
 
-const getMatchHistory = async (accountID_list) => {
-    console.log('controller getMatchHistory')
+const getMatchHistory = async (accounts) => {
+    console.log(`controller getMatchHistory. accounts: ${accounts}`)
 
-    return await openDotaService.getMatchHistory(accountID_list)
+    if (!accounts) {
+        console.log('invalid account_list')
+        throw new Error('accounts must be provided')
+    }
+
+    return await openDotaService.getMatchHistory(accounts)
 }
 
 module.exports = {

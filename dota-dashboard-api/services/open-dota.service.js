@@ -1,10 +1,10 @@
 const rp = require('request-promise');
 
-const getMatchHistory = async (accountID_list) => {
+const getMatchHistory = async (accounts) => {
     console.log('service getMatchHistory')
     let matchHistory = []
 
-    for (const accountID of accountID_list) {
+    for (const accountID of accounts.split(',')) {
         // fetch the recent match history for each account
         console.log(`get match history for ${accountID}`)
 
@@ -20,7 +20,7 @@ const getMatchHistory = async (accountID_list) => {
 }
 
 const getMatchHistoryByAccountID = async (accountID) => {
-    const recentMatchesUrl = `https://api.opendota.com/api/players/${accountID}/recentMatches?api_key=YOUR-API-KEY`
+    const recentMatchesUrl = `https://api.opendota.com/api/players/${accountID}/matches?limit=10&api_key=YOUR-API-KEY`
     console.log(`service getMatchHistoryByAccountID ${recentMatchesUrl}`)
     let result = ''
 
