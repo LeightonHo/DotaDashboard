@@ -38,12 +38,13 @@ const processMatchHistory = (matchHistory) => {
 
     for (let account_id in matchHistory) {
         for (match of matchHistory[account_id]) {
-            let start_time_utc = 
             match.start_time_utc = new Date(match.start_time * 1000).toUTCString()
             match.account_id = account_id
             result.push(match)
         }
     }
+
+    // TODO: sort by player_slot
 
     // order the results by game start time descending
     result = result.sort((a, b) => b.start_time - a.start_time)
