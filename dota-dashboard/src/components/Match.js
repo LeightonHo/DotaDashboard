@@ -3,8 +3,9 @@ import { lobby_type, heroes } from 'dotaconstants'
 import Hero from './Hero';
 
 const moment = require('moment')
+const opendota_api = 'https://api.opendota.com'
 
-class MatchHistoryRecord extends Component {
+class Match extends Component {
     constructor(props) {
         super(props)
 
@@ -25,7 +26,7 @@ class MatchHistoryRecord extends Component {
 
         return (
             <div match_id={match_id} className={`match ${win ? 'victory' : 'defeat'}`}>
-                <Hero name={hero.localized_name} mg_url={hero.icon} />
+                <Hero name={hero.localized_name} img_url={`${opendota_api}${hero.icon}`} />
                 <div>
                     <span>{start_date} {duration}</span>
                     <span>MatchID: {match_id}</span>
@@ -63,4 +64,4 @@ const determineDurationText = (duration) => {
     return `${minutes}m ${seconds}s`
 }
 
-export default MatchHistoryRecord
+export default Match

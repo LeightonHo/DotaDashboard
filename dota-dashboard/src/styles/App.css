@@ -45,11 +45,23 @@
 }
 
 .match.victory {
-  box-shadow: 0 2px 2px 0 rgb(108, 199, 116), 0 4px 2px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 2px 2px 0 rgb(108, 199, 116), 0 4px 2px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: linear-gradient(to right, #37b35b, #108230);
 }
 
 .match.defeat {
-  box-shadow: 0 2px 2px 0 rgb(183, 86, 86), 0 4px 2px 0 rgba(224, 100, 100, 0.19);
+  /* box-shadow: 0 2px 2px 0 rgb(183, 86, 86), 0 4px 2px 0 rgba(224, 100, 100, 0.19); */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: linear-gradient(to right, #d24040, #c12323);
+}
+
+.match.radiant {
+  background: linear-gradient(to right, #37b35b, #108230);
+}
+
+.match.dire {
+  background: linear-gradient(to right, #d24040, #a01818);
 }
 
 .match span {
@@ -58,6 +70,8 @@
 }
 
 .hero {
+  display: flex;
+  flex-direction: column;
   width: 80px;
   height: 100%;
   float: left;
@@ -65,9 +79,11 @@
   font-size: 12px;
 }
 
-.hero span {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.hero .icon {
+  flex: 0 0 auto;
+}
+
+.hero .name {
+  flex: 1;
   padding-bottom: 5px;
 }
