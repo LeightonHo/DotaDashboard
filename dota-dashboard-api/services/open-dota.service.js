@@ -40,6 +40,7 @@ const processMatchHistory = (matchHistory) => {
         for (match of matchHistory[account_id]) {
             match.start_time_utc = new Date(match.start_time * 1000).toUTCString()
             match.account_id = account_id
+            
             result.push(match)
         }
     }

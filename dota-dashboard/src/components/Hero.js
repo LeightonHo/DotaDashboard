@@ -4,8 +4,8 @@ class Hero extends Component {
     render() {
         return (
             <div className='hero'> 
-                <span>{this.props.name}</span>
                 <img src={this.props.img_url} />
+                <span>{this.props.name}</span>
             </div>
         )
     }
