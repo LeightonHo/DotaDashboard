@@ -1,3 +1,4 @@
 module.exports = {
-    openDotaController: require('./open-dota.controller')
+    openDotaController: require('./open-dota.controller'),
+    steamController: require('./steam.controller'),
 }

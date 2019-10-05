@@ -1,19 +1,19 @@
 const request = require('request-promise');
 
+const opendota_api = 'https://api.opendota.com/api'
+const api_key = 'YOUR-API-KEY'
+
 const getMatchHistory = async (accounts) => {
-    console.log('service getMatchHistory')
     let matchHistory = {}
+    let account_list = accounts.split(',')
 
-    for (const accountID of accounts.split(',')) {
-        // fetch the recent match history for each account
-        console.log(`get match history for ${accountID}`)
-
-        await getMatchHistoryByAccountID(accountID).then(result => {
-            matchHistory[accountID] = result
+    await Promise.all(account_list.map(async (account) => {
+        await getMatchHistoryByAccountID(account).then(result => {
+            matchHistory[account] = result
         })
-    }
-
-    console.log(`there are ${matchHistory.length} result(s)`)
+    })).catch(error => {
+        console.error(error)
+    })
 
     let result = processMatchHistory(matchHistory)
 
@@ -21,11 +21,10 @@ const getMatchHistory = async (accounts) => {
 }
 
 const getMatchHistoryByAccountID = async (accountID) => {
-    const recentMatchesUrl = `https://api.opendota.com/api/players/${accountID}/matches?limit=10&api_key=YOUR-API-KEY`
-    console.log(`service getMatchHistoryByAccountID ${recentMatchesUrl}`)
+    const url = `${opendota_api}/players/${accountID}/matches?limit=10&api_key=${api_key}`
     let result = null
 
-    await request(recentMatchesUrl).then(response => {
+    await request(url).then(response => {
         result = JSON.parse(response)
     })
 
@@ -53,6 +52,27 @@ const processMatchHistory = (matchHistory) => {
     return result
 }
 
+const searchPlayers = async (persona_name) => {
+    const url = `${opendota_api}/search?q=${persona_name}&api_key=YOUR-API-KEY`
+    let result = []
+
+    await request(url).then(response => {
+        result = JSON.parse(response)
+    })
+
+    console.log(result[0])
+    console.log(result[0].last_match_time)
+
+    // sort by last match time descending
+    // result = result.sort((a, b) => new Date(b.last_match_time) - new Date(a.last_match_time)) 
+
+    // sort by similarity descending
+    result = result.sort((a, b) => b.similarity - a.similarity) 
+
+    return result
+}
+
 module.exports = {
-    getMatchHistory
+    getMatchHistory,
+    searchPlayers
 }
