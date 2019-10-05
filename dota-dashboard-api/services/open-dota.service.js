@@ -60,14 +60,11 @@ const searchPlayers = async (persona_name) => {
         result = JSON.parse(response)
     })
 
-    console.log(result[0])
-    console.log(result[0].last_match_time)
-
     // sort by last match time descending
-    // result = result.sort((a, b) => new Date(b.last_match_time) - new Date(a.last_match_time)) 
+    result = result.sort((a, b) => new Date(b.last_match_time) - new Date(a.last_match_time)) 
 
     // sort by similarity descending
-    result = result.sort((a, b) => b.similarity - a.similarity) 
+    // result = result.sort((a, b) => b.similarity - a.similarity) 
 
     return result
 }
