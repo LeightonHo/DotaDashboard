@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Match from './Match';
+import React, { Component } from 'react'
+import Match from './Match'
 
 const baseUrl = 'http://localhost:3001/api'
 
@@ -9,7 +9,7 @@ class MatchHistory extends Component {
 
         this.state = {
             data: [],
-            hasErrors: false
+            hasErrors: null
         }
     }
 
@@ -22,10 +22,12 @@ class MatchHistory extends Component {
 
     render() {
         return (
-            <div className='match-container'> 
-                {this.state.data.map(function(matchData, index) {
-                    return <Match key={ index } matchData={ matchData } />
-                })}
+            <div className='column'>
+                <div className='match-container '> 
+                    {this.state.data.map(function(matchData, index) {
+                        return <Match key={ index } matchData={ matchData } />
+                    })}
+                </div>
             </div>
         )
     }

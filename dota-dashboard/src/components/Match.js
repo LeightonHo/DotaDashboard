@@ -24,10 +24,12 @@ class Match extends Component {
         const hero = heroes[this.props.matchData.hero_id]
         const duration = determineDurationText(this.props.matchData.duration)
 
+        console.log(hero)
+
         return (
-            <div match_id={match_id} className={`match ${win ? 'victory' : 'defeat'}`}>
+            <div match_id={match_id} className={`columns match ${win ? 'victory' : 'defeat'}`}>
                 <Hero name={hero.localized_name} img_url={`${opendota_api}${hero.icon}`} />
-                <div>
+                <div className='column'>
                     <span>{start_date} {duration}</span>
                     <span>MatchID: {match_id}</span>
                     <span>Player: {account_id}</span>
