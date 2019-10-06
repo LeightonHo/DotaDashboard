@@ -3,10 +3,6 @@ import Match from "./Match"
 
 
 class MatchHistory extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <div className="column">

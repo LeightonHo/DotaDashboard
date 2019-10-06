@@ -39,7 +39,7 @@
 
 .match-container {
   text-align: center;
-  margin-top: 30px;
+  padding: 50px;
 }
 
 .match {
@@ -50,28 +50,28 @@
   background: #ffff;
   margin-bottom: 20px;
 
-  .victory {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: linear-gradient(to right, #37b35b, #108230);
+  span {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
-.match.defeat {
+.victory {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* background: linear-gradient(to right, #d24040, #c12323); */
+  // background: linear-gradient(to right, #37b35b, #108230);
 }
 
-.match.radiant {
+.defeat {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  // background: linear-gradient(to right, #d24040, #c12323);
+}
+
+.radiant {
   background: linear-gradient(to right, #37b35b, #108230);
 }
 
-.match.dire {
+.dire {
   background: linear-gradient(to right, #d24040, #a01818);
-}
-
-.match span {
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
 .hero {
