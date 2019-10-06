@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import PlayerSearch from './PlayerSearch'
+import PlayerList from './PlayerList'
 
 class SidePanel extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class SidePanel extends Component {
         return (
             <div className='column is-one-quarter'>
                 <div className='side-panel'>
-                    <PlayerSearch />
+                    <PlayerList />
                 </div>
             </div>
         )

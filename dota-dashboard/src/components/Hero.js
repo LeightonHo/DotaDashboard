@@ -5,7 +5,7 @@ class Hero extends Component {
         return (
             <div className='column is-one-fifth hero'> 
                 <div className='icon'>
-                    <img src={this.props.img_url} />
+                    <img src={this.props.img_url} alt="" />
                 </div>
                 <div className='name'>
                     <span>{this.props.name}</span>

@@ -32,7 +32,6 @@ const getMatchHistoryByAccountID = async (accountID) => {
 }
 
 const processMatchHistory = (matchHistory) => {
-    console.log('processing the result set')
     let result = []
 
     for (let account_id in matchHistory) {
@@ -60,13 +59,22 @@ const searchPlayers = async (persona_name) => {
         result = JSON.parse(response)
     })
 
+    // remove elements which don't have a last match time
+    let valid_players = []
+
+    for (player of result) {
+        if (player.last_match_time) {
+            valid_players.push(player)
+        }
+    }
+
     // sort by last match time descending
-    result = result.sort((a, b) => new Date(b.last_match_time) - new Date(a.last_match_time)) 
+    // valid_players = valid_players.sort((a, b) => new Date(b.last_match_time) - new Date(a.last_match_time)) 
 
     // sort by similarity descending
-    // result = result.sort((a, b) => b.similarity - a.similarity) 
+    valid_players = valid_players.sort((a, b) => b.similarity - a.similarity)
 
-    return result
+    return valid_players
 }
 
 module.exports = {

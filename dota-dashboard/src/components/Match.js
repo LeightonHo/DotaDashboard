@@ -51,7 +51,7 @@ const determineTeam = (player_slot) => {
 }
 
 const determineWin = (team, radiant_win) => {
-    if (team == 'Radiant' && radiant_win) {
+    if (team === 'Radiant' && radiant_win) {
         return true
     }
 

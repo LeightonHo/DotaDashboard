@@ -1,0 +1,21 @@
+$title-color: #ffffff;
+
+@import "../../node_modules/bulma/bulma.sass";
+
+.player-search {
+    .search-title {
+        margin-bottom: 20px;
+    }
+
+    .search-input-div {
+        margin-bottom: 20px;
+    }
+
+    .search-result {
+        padding-top: 20px;
+    }
+    
+    .search-button {
+        width: 50px;
+    }
+}

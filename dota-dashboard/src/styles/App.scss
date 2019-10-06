@@ -1,3 +1,5 @@
+@import "../../node_modules/bulma/bulma.sass";
+
 .App {
   text-align: center;
 }
@@ -32,9 +34,7 @@
   height: 100%;
   padding: 10px;
   background: #212121;
-}
-
-.side-panel .search {
+  color: #ffff;
 }
 
 .match-container {
@@ -49,11 +49,11 @@
   height: 80px;
   background: #ffff;
   margin-bottom: 20px;
-}
 
-.match.victory {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* background: linear-gradient(to right, #37b35b, #108230); */
+  .victory {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: linear-gradient(to right, #37b35b, #108230);
+  }
 }
 
 .match.defeat {
