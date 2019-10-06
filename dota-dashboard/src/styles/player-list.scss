@@ -1,0 +1,12 @@
+$title-color: #ffffff;
+
+@import "../../node_modules/bulma/bulma.sass";
+
+.player-list {
+    .player {
+        img {
+            vertical-align: middle;
+            height: 20px;
+        }
+    }
+}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Header from './Header'
-import MatchHistory from './MatchHistory'
-import SidePanel from './SidePanel'
+import FilterableMatchHistory from './FilterableMatchHistory'
 import '../styles/App.scss'
 
 class App extends Component {0
@@ -16,10 +15,7 @@ class App extends Component {0
     return (
       <div className="app">
         <Header />
-        <div className="columns"> 
-          <SidePanel />
-          <MatchHistory />
-        </div>
+        <FilterableMatchHistory />
       </div>
     )
   }

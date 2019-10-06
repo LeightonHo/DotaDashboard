@@ -1,5 +1,5 @@
-import React, {Component} from "react"
-import "../styles/PlayerSearch.scss"
+import React, { Component } from "react"
+import "../styles/player-search.scss"
 
 const baseUrl = "http://localhost:3001/api"
 
@@ -14,23 +14,19 @@ class PlayerSearch extends Component {
         }
     }
 
-    componentDidMount() {
-        
-    }
-
     render() {
         return (
             <div>
                 <div className="player-search">
-                    <h2 className="search-title title is-3" onClick={() => this.props.addPlayer()}>Search Players</h2>
+                    <h2 className="search-title title is-3">Search</h2>
                     <div className="search-input-div">
-                        <input className="search-input input is-small" value={this.state.player_input_value} onChange={(evt => this.updateInputValue(evt))} placeholder="Leji"></input>
+                        <input className="search-input input is-small" value={this.state.player_input_value} onChange={(event => this.updateInputValue(event))} placeholder="Leji"></input>
                         <button className="search-button button is-small is-primary" onClick={() => this.findPlayers()}>Search</button>
                     </div>
                     <div className="search-result columns is-multiline">
                         {this.state.data.map((playerData, index) => {
                             return (
-                                <div className="column is-2" onClick={(evt) => this.props.addPlayer(evt)} key={index}>
+                                <div className="column is-2" onClick={() => this.props.addPlayer(this.state.data[index])} key={index}>
                                     <img src={playerData.avatarfull} alt="" />
                                     <span>{playerData.personaname}</span>
                                 </div>
@@ -42,9 +38,9 @@ class PlayerSearch extends Component {
         )
     }
 
-    updateInputValue(evt) {
+    updateInputValue(event) {
         this.setState({
-            input_value: evt.target.value
+            input_value: event.target.value
         })
     }
 

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { lobby_type, heroes } from 'dotaconstants'
-import Hero from './Hero';
+import React, { Component } from "react";
+import { lobby_type, heroes } from "dotaconstants"
+import Hero from "./Hero";
 
-const moment = require('moment')
-const opendota_api = 'https://api.opendota.com'
+const moment = require("moment")
+const opendota_api = "https://api.opendota.com"
 
 class Match extends Component {
     constructor(props) {
@@ -15,21 +15,19 @@ class Match extends Component {
     }
 
     render() {
-        const match_id = this.props.matchData.match_id
-        const account_id = this.props.matchData.account_id
-        const start_date = moment(this.props.matchData.start_time_utc).format("DD/MM/YYYY hh:mma")
-        const team = determineTeam(this.props.matchData.player_slot)
-        const win = determineWin(team, this.props.matchData.radiant_win)
-        const win_text = win ? 'Victory' : 'Defeat'
-        const hero = heroes[this.props.matchData.hero_id]
-        const duration = determineDurationText(this.props.matchData.duration)
-
-        console.log(hero)
+        const match_id = this.props.match_data.match_id
+        const account_id = this.props.match_data.account_id
+        const start_date = moment(this.props.match_data.start_time_utc).format("DD/MM/YYYY hh:mma")
+        const team = determineTeam(this.props.match_data.player_slot)
+        const win = determineWin(team, this.props.match_data.radiant_win)
+        const win_text = win ? "Victory" : "Defeat"
+        const hero = heroes[this.props.match_data.hero_id]
+        const duration = determineDurationText(this.props.match_data.duration)
 
         return (
-            <div match_id={match_id} className={`columns match ${win ? 'victory' : 'defeat'}`}>
+            <div match_id={match_id} className={`columns match ${win ? "victory" : "defeat"}`}>
                 <Hero name={hero.localized_name} img_url={`${opendota_api}${hero.icon}`} />
-                <div className='column'>
+                <div className="column">
                     <span>{start_date} {duration}</span>
                     <span>MatchID: {match_id}</span>
                     <span>Player: {account_id}</span>
@@ -44,14 +42,14 @@ class Match extends Component {
 const determineTeam = (player_slot) => {
     // Which slot the player is in. 0-127 are Radiant, 128-255 are Dire
     if (player_slot > 0 && player_slot < 128 ) {
-        return 'Radiant'
+        return "Radiant"
     } 
         
-    return 'Dire'
+    return "Dire"
 }
 
 const determineWin = (team, radiant_win) => {
-    if (team === 'Radiant' && radiant_win) {
+    if (team === "Radiant" && radiant_win) {
         return true
     }
 

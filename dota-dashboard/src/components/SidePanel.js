@@ -1,5 +1,5 @@
-import React, { Component} from 'react'
-import PlayerList from './PlayerList'
+import React, { Component } from "react"
+import PlayerList from "./PlayerList"
 
 class SidePanel extends Component {
     constructor(props) {
@@ -12,9 +12,9 @@ class SidePanel extends Component {
 
     render() {
         return (
-            <div className='column is-one-quarter'>
-                <div className='side-panel'>
-                    <PlayerList />
+            <div className="column is-one-quarter">
+                <div className="side-panel">
+                    <PlayerList player_list={this.state.player_list} addPlayer={(player) => this.props.addPlayer(player)} />
                 </div>
             </div>
         )
