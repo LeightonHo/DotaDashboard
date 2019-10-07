@@ -7,8 +7,8 @@ class MatchHistory extends Component {
         return (
             <div className="column">
                 <div className="match-container "> 
-                    {this.props.match_data && this.props.match_data.map(function(match_data, index) {
-                        return <Match match_data={ match_data } key={ index } />
+                    {this.props.matchData && this.props.matchData.map(function(matchData, index) {
+                        return <Match matchData={ matchData } key={ index } />
                     })}
                     <p>{this.props.isFetching ? 'Fetching match data' : ''}</p>
                 </div>

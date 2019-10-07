@@ -9,32 +9,51 @@ class FilterableMatchHistory extends Component {
         super(props)
 
         this.state = {
-            is_fetching: false,
-            player_list: [],
-            match_data: []
+            isFetching: false,
+            playerList: [],
+            matchData: []
         }
     }
 
     addPlayer(player) {
-        let updated_player_list = [...this.state.player_list, player]
+        let updatedPlayerList = [...this.state.playerList, player]
 
         this.setState({ 
-            player_list: updated_player_list
+            playerList: updatedPlayerList,
+            matchData: []
         })
 
-        this.updateMatchData(updated_player_list)
+        this.updateMatchData(updatedPlayerList)
     }
 
-    removePlayer() { 
+    removePlayer(player) { 
         // TODO: method for removing players from the following list
+        let updatedPlayerList = []
+        let currentPlayer
+
+        for (let i = 0; i < this.state.playerList.length; i++) {
+            currentPlayer = this.state.playerList[i]
+
+            if (currentPlayer.account_id === player.account_id) {
+                updatedPlayerList = [...this.state.playerList.slice(0, i), ...this.state.playerList.slice(i + 1)]
+                break
+            }
+        }
+
+        this.setState({ 
+            playerList: updatedPlayerList,
+            matchData: []
+        })
+
+        this.updateMatchData(updatedPlayerList)
     }
 
-    getAccountListCSV(updated_player_list) {
+    getAccountListCSV(updatedPlayerList) {
         let result = ""
 
-        console.log(updated_player_list)
+        console.log(updatedPlayerList)
 
-        for (let player of updated_player_list) {
+        for (let player of updatedPlayerList) {
             result += player.account_id + ","
         }
 
@@ -44,31 +63,38 @@ class FilterableMatchHistory extends Component {
         return result
     }
 
-    updateMatchData(updated_player_list) {
-        this.setState({ is_fetching: true })
+    updateMatchData(updatedPlayerList) {
+        this.setState({ isFetching: true })
         
-        const account_list = this.getAccountListCSV(updated_player_list)
-        const url = `${baseUrl}/matchHistory?accounts=${account_list}`
+        const accountList = this.getAccountListCSV(updatedPlayerList)
+
+        if (accountList.length === 0) {
+            this.setState({ isFetching: false })
+
+            return
+        }
+
+        const url = `${baseUrl}/matchHistory?accounts=${accountList}`
         console.log(url)
 
         fetch(url)
             .then(res => res.json())
             .then(res => this.setState({
-                match_data: res,
-                is_fetching: false
+                matchData: res,
+                isFetching: false
             }))
-            .catch(() => this.setState({ has_errors: true }))
+            .catch(() => this.setState({ hasErrors: true }))
     }
 
     render() {
         return (
             <div className="columns"> 
                 <SidePanel 
-                    player_list={this.state.player_list} 
+                    playerList={this.state.playerList} 
                     addPlayer={(player) => this.addPlayer(player)} 
                     removePlayer={(player) => this.removePlayer(player)}
                 />
-                {(this.state.is_fetching) ? "Fetching match data" : <MatchHistory match_data={this.state.match_data} />}
+                {(this.state.isFetching) ? "Fetching match data" : <MatchHistory matchData={this.state.matchData} />}
             </div>
         )
     }

@@ -7,10 +7,11 @@ class PlayerList extends Component {
         return (
             <div>
                 <h2 className="title is-3">Players</h2>
+                <h4 className="subtitle">Click to remove</h4>
                 <div className="player-list container columns is-multiline">
-                    {this.props.player_list && this.props.player_list.map((player, index) => {
+                    {this.props.playerList && this.props.playerList.map((player, index) => {
                         return (
-                            <div className="player column" key={index}>
+                            <div className="player column" onClick={() => this.props.removePlayer(this.props.playerList[index])} key={index}>
                                 <img src={player.avatarfull} alt="" />
                                 <span>{player.personaname}</span>
                             </div>

@@ -8,7 +8,7 @@ class PlayerSearch extends Component {
         super(props)
 
         this.state = {
-            input_value: "",
+            inputValue: "",
             data: [],
             hasErrors: null
         }
@@ -20,7 +20,7 @@ class PlayerSearch extends Component {
                 <div className="player-search">
                     <h2 className="search-title title is-3">Search</h2>
                     <div className="search-input-div">
-                        <input className="search-input input is-small" value={this.state.player_input_value} onChange={(event => this.updateInputValue(event))} placeholder="Leji"></input>
+                        <input className="search-input input is-small" value={this.state.player_inputValue} onChange={(event => this.updateInputValue(event))} placeholder="Leji"></input>
                         <button className="search-button button is-small is-primary" onClick={() => this.findPlayers()}>Search</button>
                     </div>
                     <div className="search-result columns is-multiline">
@@ -40,19 +40,15 @@ class PlayerSearch extends Component {
 
     updateInputValue(event) {
         this.setState({
-            input_value: event.target.value
+            inputValue: event.target.value
         })
     }
 
     findPlayers = () => {
-        console.log(this.state.input_value)
-
-        if (this.state.input_value.length > 0) {
-            console.log("fetching players")
-            fetch(`${baseUrl}/searchPlayer?persona_name=${this.state.input_value}`)
+        if (this.state.inputValue.length > 0) {
+            fetch(`${baseUrl}/searchPlayer?persona_name=${this.state.inputValue}`)
                 .then(res => res.json())
                 .then(res => this.setState({ data: res }))
-                .then(() => console.log(this.state.data))
                 .catch(() => this.setState({ hasErrors: true }))
         }
     }

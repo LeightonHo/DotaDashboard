@@ -15,41 +15,39 @@ class Match extends Component {
     }
 
     render() {
-        const match_id = this.props.match_data.match_id
-        const account_id = this.props.match_data.account_id
-        const start_date = moment(this.props.match_data.start_time_utc).format("DD/MM/YYYY hh:mma")
-        const team = determineTeam(this.props.match_data.player_slot)
-        const win = determineWin(team, this.props.match_data.radiant_win)
-        const win_text = win ? "Victory" : "Defeat"
-        const hero = heroes[this.props.match_data.hero_id]
-        const duration = determineDurationText(this.props.match_data.duration)
+        const startDate = moment(this.props.matchData.start_time_utc).format("DD/MM/YYYY hh:mma")
+        const team = determineTeam(this.props.matchData.playerSlot)
+        const win = determineWin(team, this.props.matchData.radiantVictory)
+        const winText = win ? "Victory" : "Defeat"
+        const hero = heroes[this.props.matchData.hero_id]
+        const duration = determineDurationText(this.props.matchData.duration)
 
         return (
-            <div match_id={match_id} className={`columns match ${win ? "victory" : "defeat"}`}>
+            <div match_id={this.props.matchData.match_id} className={`columns match ${win ? "victory" : "defeat"}`}>
                 <Hero name={hero.localized_name} img_url={`${opendota_api}${hero.icon}`} />
                 <div className="column">
-                    <span>{start_date} {duration}</span>
-                    <span>MatchID: {match_id}</span>
-                    <span>Player: {account_id}</span>
+                    <span>{startDate} {duration}</span>
+                    <span>MatchID: {this.props.matchData.match_id}</span>
+                    <span>Player: {this.props.matchData.account_id}</span>
                     <span>Team: {team}</span>
-                    <span>{win_text}</span>
+                    <span>{winText}</span>
                 </div>
             </div>
         )
     }
 }
 
-const determineTeam = (player_slot) => {
+const determineTeam = (playerSlot) => {
     // Which slot the player is in. 0-127 are Radiant, 128-255 are Dire
-    if (player_slot > 0 && player_slot < 128 ) {
+    if (playerSlot > 0 && playerSlot < 128 ) {
         return "Radiant"
     } 
         
     return "Dire"
 }
 
-const determineWin = (team, radiant_win) => {
-    if (team === "Radiant" && radiant_win) {
+const determineWin = (team, radiantVictory) => {
+    if (team === "Radiant" && radiantVictory) {
         return true
     }
 
