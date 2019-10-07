@@ -64,19 +64,15 @@ class FilterableMatchHistory extends Component {
     }
 
     updateMatchData(updatedPlayerList) {
-        this.setState({ isFetching: true })
-        
         const accountList = this.getAccountListCSV(updatedPlayerList)
 
         if (accountList.length === 0) {
-            this.setState({ isFetching: false })
-
             return
         }
 
         const url = `${baseUrl}/matchHistory?accounts=${accountList}`
-        console.log(url)
 
+        this.setState({ isFetching: true })
         fetch(url)
             .then(res => res.json())
             .then(res => this.setState({
@@ -94,7 +90,9 @@ class FilterableMatchHistory extends Component {
                     addPlayer={(player) => this.addPlayer(player)} 
                     removePlayer={(player) => this.removePlayer(player)}
                 />
-                {(this.state.isFetching) ? "Fetching match data" : <MatchHistory matchData={this.state.matchData} />}
+                {(this.state.isFetching) 
+                    ? <progress className="progress-bar progress is-large is-primary"></progress> 
+                    : <MatchHistory matchData={this.state.matchData} />}
             </div>
         )
     }

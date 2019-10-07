@@ -13,6 +13,10 @@ $title-color: #ffffff;
 
     .search-result {
         padding-top: 20px;
+
+        .player {
+            cursor: pointer;
+        }
     }
     
     .search-button {

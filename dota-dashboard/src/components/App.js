@@ -14,7 +14,6 @@ class App extends Component {0
   render(){
     return (
       <div className="app">
-        <Header />
         <FilterableMatchHistory />
       </div>
     )

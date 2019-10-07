@@ -8,6 +8,7 @@ class PlayerSearch extends Component {
         super(props)
 
         this.state = {
+            isFetching: false,
             inputValue: "",
             data: [],
             hasErrors: null
@@ -21,12 +22,12 @@ class PlayerSearch extends Component {
                     <h2 className="search-title title is-3">Search</h2>
                     <div className="search-input-div">
                         <input className="search-input input is-small" value={this.state.player_inputValue} onChange={(event => this.updateInputValue(event))} placeholder="Leji"></input>
-                        <button className="search-button button is-small is-primary" onClick={() => this.findPlayers()}>Search</button>
+                        <button className={`search-button button is-small is-primary ${this.state.isFetching ? "is-loading" : ""}`} onClick={() => this.findPlayers()}>Search</button>
                     </div>
                     <div className="search-result columns is-multiline">
                         {this.state.data.map((playerData, index) => {
                             return (
-                                <div className="column is-2" onClick={() => this.props.addPlayer(this.state.data[index])} key={index}>
+                                <div className="player column is-2" onClick={() => this.props.addPlayer(this.state.data[index])} key={index}>
                                     <img src={playerData.avatarfull} alt="" />
                                     <span>{playerData.personaname}</span>
                                 </div>
@@ -46,9 +47,16 @@ class PlayerSearch extends Component {
 
     findPlayers = () => {
         if (this.state.inputValue.length > 0) {
+            this.setState({ 
+                isFetching: true,
+                data: []
+            })
             fetch(`${baseUrl}/searchPlayer?persona_name=${this.state.inputValue}`)
                 .then(res => res.json())
-                .then(res => this.setState({ data: res }))
+                .then(res => this.setState({ 
+                    data: res,
+                    isFetching: false
+                }))
                 .catch(() => this.setState({ hasErrors: true }))
         }
     }
