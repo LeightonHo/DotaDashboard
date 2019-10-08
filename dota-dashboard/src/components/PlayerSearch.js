@@ -20,9 +20,13 @@ class PlayerSearch extends Component {
             <div>
                 <div className="player-search">
                     <h2 className="search-title title is-3">Search</h2>
-                    <div className="search-input-div">
-                        <input className="search-input input is-small" value={this.state.player_inputValue} onChange={(event => this.updateInputValue(event))} placeholder="Leji"></input>
-                        <button className={`search-button button is-small is-primary ${this.state.isFetching ? "is-loading" : ""}`} onClick={() => this.findPlayers()}>Search</button>
+                    <div className="search-input-div columns">
+                        <div className="column is-10">
+                            <input className="search-input input is-small" value={this.state.player_inputValue} onChange={(event => this.updateInputValue(event))} placeholder="Leji"></input>
+                        </div>
+                        <div className="column is-2">
+                            <button className={`search-button button is-small is-primary ${this.state.isFetching ? "is-loading" : ""}`} onClick={() => this.findPlayers()}>Search</button>
+                        </div>
                     </div>
                     <div className="search-result columns is-multiline">
                         {this.state.data.map((playerData, index) => {

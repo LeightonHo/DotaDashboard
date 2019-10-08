@@ -16,8 +16,8 @@ class Match extends Component {
 
     render() {
         const startDate = moment(this.props.matchData.start_time_utc).format("DD/MM/YYYY hh:mma")
-        const team = determineTeam(this.props.matchData.playerSlot)
-        const win = determineWin(team, this.props.matchData.radiantVictory)
+        const team = determineTeam(this.props.matchData.player_slot)
+        const win = determineWin(team, this.props.matchData.radiant_win)
         const winText = win ? "Victory" : "Defeat"
         const hero = heroes[this.props.matchData.hero_id]
         const duration = determineDurationText(this.props.matchData.duration)
@@ -25,8 +25,15 @@ class Match extends Component {
         return (
             <div match_id={this.props.matchData.match_id} className={`columns match ${win ? "victory" : "defeat"}`}>
                 <Hero name={hero.localized_name} img_url={`${opendota_api}${hero.icon}`} />
+                <div className="column is-3">
+                    <div>
+                        <span>{startDate}</span>
+                    </div>
+                    <div>
+                        <span>{duration}</span>
+                    </div>
+                </div>
                 <div className="column">
-                    <span>{startDate} {duration}</span>
                     <span>MatchID: {this.props.matchData.match_id}</span>
                     <span>Player: {this.props.matchData.account_id}</span>
                     <span>Team: {team}</span>

@@ -1,0 +1,13 @@
+@import "../../node_modules/bulma/bulma.sass";
+
+.hero {
+    width: 80px;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+  
+.name {
+    padding-bottom: 5px;
+    font-size: 12px;
+}

@@ -1,5 +1,11 @@
 @import "../../node_modules/bulma/bulma.sass";
 
+html body #root {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -32,9 +38,13 @@
 
 .side-panel {
   height: 100%;
-  padding: 10px;
+  padding: 20px 10px 10px 20px;
   background: #212121;
   color: #ffff;
+}
+
+.filterable-match-history {
+  height: 100%;
 }
 
 .match-container {
@@ -72,16 +82,4 @@
 
 .dire {
   background: linear-gradient(to right, #d24040, #a01818);
-}
-
-.hero {
-  width: 80px;
-  height: 100%;
-  float: left;
-  text-align: center;
-  font-size: 12px;
-}
-
-.hero .name {
-  padding-bottom: 5px;
 }

@@ -5,7 +5,7 @@ import "../styles/player-list.scss"
 class PlayerList extends Component {
     render() {
         return (
-            <div>
+            <>
                 <h2 className="title is-3">Players</h2>
                 <h4 className="subtitle">Click to remove</h4>
                 <div className="player-list container columns is-multiline">
@@ -19,7 +19,7 @@ class PlayerList extends Component {
                     })}
                 </div>
                 <PlayerSearch addPlayer={(player) => this.props.addPlayer(player)} />
-            </div>
+            </>
         )
     }
 }

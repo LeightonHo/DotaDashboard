@@ -84,7 +84,7 @@ class FilterableMatchHistory extends Component {
 
     render() {
         return (
-            <div className="columns"> 
+            <div className="filterable-match-history columns"> 
                 <SidePanel 
                     playerList={this.state.playerList} 
                     addPlayer={(player) => this.addPlayer(player)} 

@@ -13,9 +13,7 @@ class App extends Component {0
   
   render(){
     return (
-      <div className="app">
-        <FilterableMatchHistory />
-      </div>
+      <FilterableMatchHistory />
     )
   }
 }
