@@ -21,6 +21,7 @@ class Match extends Component {
         const winText = win ? "Victory" : "Defeat"
         const hero = heroes[this.props.matchData.hero_id]
         const duration = determineDurationText(this.props.matchData.duration)
+        console.log(this)
 
         return (
             <div match_id={this.props.matchData.match_id} className={`columns match ${win ? "victory" : "defeat"}`}>
@@ -32,6 +33,9 @@ class Match extends Component {
                     <div>
                         <span>{duration}</span>
                     </div>
+                </div>
+                <div className="column is-2">
+                    <span>{this.props.matchData.kills} / {this.props.matchData.deaths} / {this.props.matchData.assists}</span>
                 </div>
                 <div className="column">
                     <span>MatchID: {this.props.matchData.match_id}</span>
