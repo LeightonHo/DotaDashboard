@@ -1,17 +1,15 @@
 import React, { Component } from "react"
 import Match from "./Match"
-
+import "../styles/match.scss"
 
 class MatchHistory extends Component {
     render() {
         return (
-            <div className="column">
-                <div className="match-container "> 
-                    {this.props.matchData && this.props.matchData.map(function(matchData, index) {
-                        return <Match matchData={ matchData } key={ index } />
-                    })}
-                    <p>{this.props.isFetching ? 'Fetching match data' : ''}</p>
-                </div>
+            <div className="match-history-container column"> 
+                {this.props.matchData && this.props.matchData.map(function(matchData, index) {
+                    return <Match matchData={ matchData } key={ index } />
+                })}
+                <p>{this.props.isFetching ? "Loading match data..." : ""}</p>
             </div>
         )
     }

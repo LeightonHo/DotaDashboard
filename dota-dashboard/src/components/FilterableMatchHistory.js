@@ -23,7 +23,7 @@ class FilterableMatchHistory extends Component {
             matchData: []
         })
 
-        this.updateMatchData(updatedPlayerList)
+        this.updateMatchHistoryData(updatedPlayerList)
     }
 
     removePlayer(player) { 
@@ -45,7 +45,7 @@ class FilterableMatchHistory extends Component {
             matchData: []
         })
 
-        this.updateMatchData(updatedPlayerList)
+        this.updateMatchHistoryData(updatedPlayerList)
     }
 
     getAccountListCSV(updatedPlayerList) {
@@ -63,7 +63,7 @@ class FilterableMatchHistory extends Component {
         return result
     }
 
-    updateMatchData(updatedPlayerList) {
+    updateMatchHistoryData(updatedPlayerList) {
         const accountList = this.getAccountListCSV(updatedPlayerList)
 
         if (accountList.length === 0) {
