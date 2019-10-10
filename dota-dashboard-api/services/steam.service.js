@@ -30,10 +30,8 @@ const getMatchDetails = async (match_id) => {
     const url = `${steam_api}/${dota_interface}/GetMatchDetails/v1?match_id=${match_id}&key=${api_key}`
     let result = null
 
-    console.log(url)
-
     await request(url).then(response => {
-        result = JSON.parse(response)
+        result = JSON.parse(response).result
     }).catch(error => {
         result = error
     })

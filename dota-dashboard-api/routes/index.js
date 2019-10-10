@@ -37,7 +37,11 @@ router.get('/steamMatchHistory', async (req, res) => {
 router.get('/matchDetails', async (req, res) => {
     const match_id = req.query.match_id
 
-    await steamController.getMatchDetails(match_id)
+    await steamController.getMatchDetails(match_id).then(result => {
+        res.status(200).send(result)
+    }).catch(error => {
+        res.status(403).send(error)
+    })
 })
 
 module.exports = router
