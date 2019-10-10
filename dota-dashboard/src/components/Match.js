@@ -55,6 +55,8 @@ class Match extends Component {
         const duration = determineDurationText(this.props.matchData.duration)
         const lobby = lobby_type[this.props.matchData.lobby_type]
 
+        console.log(this.state.matchDetails)
+
         return (
             <div className="match-container">
                 <div match_id={this.props.matchData.match_id} className={`columns match ${win ? "victory" : "defeat"}`} onClick={() => { this.toggleDetails() }}>
@@ -78,7 +80,7 @@ class Match extends Component {
                         <span>{lobby.name}</span>
                     </div>
                 </div>
-                { this.state.showDetails ? <MatchDetail matchDetails={this.state.matchDetails} /> : ""}
+                { this.state.showDetails ? <MatchDetail matchDetails={this.state.matchDetails} /> : "" }
             </div>
             
         )
