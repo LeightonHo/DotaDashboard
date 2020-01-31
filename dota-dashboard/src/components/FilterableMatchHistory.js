@@ -27,7 +27,7 @@ class FilterableMatchHistory extends Component {
     }
 
     removePlayer(player) { 
-        // TODO: method for removing players from the following list
+        // method for removing players from the "following" list
         let updatedPlayerList = []
         let currentPlayer
 
