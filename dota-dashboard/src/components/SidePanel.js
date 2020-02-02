@@ -6,7 +6,7 @@ class SidePanel extends Component {
     render() {
         return (
             <div className="side-panel column is-one-quarter">
-                <ViewSelector />
+                {/* <ViewSelector /> */}
                 <PlayerList 
                     playerList={this.props.playerList} 
                     addPlayer={(player) => this.props.addPlayer(player)} 
