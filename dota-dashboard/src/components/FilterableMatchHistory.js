@@ -22,15 +22,17 @@ class FilterableMatchHistory extends Component {
     }
 
     addPlayer(player) {
-        let updatedPlayerList = [...this.state.playerList, player]
+        if (this.isFollowingPlayer(player)) {
+            return
+        }
 
         this.setState({ 
-            playerList: updatedPlayerList,
+            playerList: [...this.state.playerList, player],
             matchData: []
         })
 
-        this.savePlayerListToLocalStorage(updatedPlayerList);
-        this.updateMatchHistoryData(updatedPlayerList)
+        this.savePlayerListToLocalStorage(this.state.playerList);
+        this.updateMatchHistoryData(this.state.playerList)
     }
 
     removePlayer(player) { 
@@ -53,6 +55,18 @@ class FilterableMatchHistory extends Component {
 
         this.savePlayerListToLocalStorage(updatedPlayerList);
         this.updateMatchHistoryData(updatedPlayerList)
+    }
+
+    isFollowingPlayer(player) {
+        let currentPlayer
+
+        for (let i = 0; i < this.state.playerList.length; i++) {
+            currentPlayer = this.state.playerList[i]
+
+            if (currentPlayer.account_id === player.account_id) {
+                return true
+            }
+        }
     }
 
     savePlayerListToLocalStorage(playerList) {

@@ -35,13 +35,11 @@ class Match extends Component {
     }
 
     toggleDetails() {
-        // if we're not currently showing the match details, then check if we have the data for it.
-        // if we don't have the detailed match data, then fetch and display it.
+        // If we're not currently showing the match details, then check if we have the data for it.
+        // If we don't have the detailed match data, then fetch and display it.
         if (!this.state.showDetails && !this.state.matchDetails) {
-            console.log("fetching")
             this.fetchMatchDetails(this.props.matchData.match_id)
         } else {
-            console.log("toggling")
             this.setState({ showDetails: !this.state.showDetails })
         }
     }
@@ -78,7 +76,7 @@ class Match extends Component {
                         <span>{lobby.name}</span>
                     </div>
                 </div>
-                { this.state.isFetching ? <progress className="progress-bar progress is-large is-primary"></progress> : "" }
+                { this.state.isFetching ? <progress className="progress-bar progress is-small is-primary"></progress> : "" }
                 { this.state.showDetails ? <MatchDetail matchDetails={this.state.matchDetails} /> : "" }
             </div>
             
@@ -87,7 +85,7 @@ class Match extends Component {
 }
 
 const determineTeam = (playerSlot) => {
-    // Which slot the player is in. 0-127 are Radiant, 128-255 are Dire
+    // Which slot the player is in. 0-127 is Radiant, 128-255 is Dire.
     if (playerSlot > 0 && playerSlot < 128 ) {
         return "Radiant"
     } else {
@@ -106,7 +104,7 @@ const determineWin = (team, radiantVictory) => {
 }
 
 const determineDurationText = (duration) => {
-    // duration is in seconds
+    // Duration is in seconds.
     const minutes = (duration / 60).toFixed(0)
     const seconds = duration % 60
 
