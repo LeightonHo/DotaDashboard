@@ -10,8 +10,14 @@ class FilterableMatchHistory extends Component {
 
         this.state = {
             isFetching: false,
-            playerList: [],
+            playerList: this.fetchPlayerListFromLocalStorage(),
             matchData: []
+        }
+    }
+
+    componentDidMount() {
+        if (this.state.playerList && this.state.playerList.length > 0) {
+            this.updateMatchHistoryData(this.state.playerList)
         }
     }
 
@@ -23,11 +29,11 @@ class FilterableMatchHistory extends Component {
             matchData: []
         })
 
+        this.savePlayerListToLocalStorage(updatedPlayerList);
         this.updateMatchHistoryData(updatedPlayerList)
     }
 
     removePlayer(player) { 
-        // method for removing players from the "following" list
         let updatedPlayerList = []
         let currentPlayer
 
@@ -45,13 +51,28 @@ class FilterableMatchHistory extends Component {
             matchData: []
         })
 
+        this.savePlayerListToLocalStorage(updatedPlayerList);
         this.updateMatchHistoryData(updatedPlayerList)
+    }
+
+    savePlayerListToLocalStorage(playerList) {
+        localStorage.playerList = JSON.stringify(playerList)
+    }
+
+    fetchPlayerListFromLocalStorage() {
+        let playerList = localStorage.playerList
+
+        console.log(playerList)
+
+        if (playerList) {
+            return JSON.parse(playerList)
+        } else {
+            return []
+        }
     }
 
     getAccountListCSV(updatedPlayerList) {
         let result = ""
-
-        console.log(updatedPlayerList)
 
         for (let player of updatedPlayerList) {
             result += player.account_id + ","
@@ -64,6 +85,7 @@ class FilterableMatchHistory extends Component {
     }
 
     updateMatchHistoryData(updatedPlayerList) {
+        console.log("updating match history data")
         const accountList = this.getAccountListCSV(updatedPlayerList)
 
         if (accountList.length === 0) {
@@ -73,6 +95,7 @@ class FilterableMatchHistory extends Component {
         const url = `${baseUrl}/matchHistory?accounts=${accountList}`
 
         this.setState({ isFetching: true })
+
         fetch(url)
             .then(res => res.json())
             .then(res => this.setState({

@@ -55,11 +55,9 @@ class Match extends Component {
         const duration = determineDurationText(this.props.matchData.duration)
         const lobby = lobby_type[this.props.matchData.lobby_type]
 
-        console.log(this.state.matchDetails)
-
         return (
-            <div className="match-container">
-                <div match_id={this.props.matchData.match_id} className={`columns match ${win ? "victory" : "defeat"}`} onClick={() => { this.toggleDetails() }}>
+            <div className="match-container shadow">
+                <div match_id={this.props.matchData.match_id} className={`columns match ${this.props.showDetails ? "": ""}`} onClick={() => { this.toggleDetails() }}>
                     <Hero name={hero.localized_name} img_url={`${opendota_api}${hero.icon}`} />
                     <div className="column is-3">
                         <div>
@@ -80,6 +78,7 @@ class Match extends Component {
                         <span>{lobby.name}</span>
                     </div>
                 </div>
+                { this.state.isFetching ? <progress className="progress-bar progress is-large is-primary"></progress> : "" }
                 { this.state.showDetails ? <MatchDetail matchDetails={this.state.matchDetails} /> : "" }
             </div>
             
