@@ -5,12 +5,8 @@ import "../styles/match.scss"
 const opendota_api = "https://api.opendota.com"
 
 class MatchDetail extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     getHeroIcon(hero) {
-        if (hero != null && hero.hasOwnProperty("icon")) {
+        if (hero && hero.hasOwnProperty("icon")) {
             return `${opendota_api}${hero.icon}`
         }
 
@@ -18,7 +14,7 @@ class MatchDetail extends Component {
     }
 
     getHeroName(hero) {
-        if (hero != null && hero.hasOwnProperty("localized_name")) {
+        if (hero && hero.hasOwnProperty("localized_name")) {
             return hero.localized_name
         }
 
@@ -45,7 +41,7 @@ class MatchDetail extends Component {
                             return (
                                 <tr key={index}>
                                     <td>
-                                        <img className="icon-small" src={this.getHeroIcon(heroes[player.hero_id])} />
+                                        <img className="icon-small" alt="" src={this.getHeroIcon(heroes[player.hero_id])} />
                                     </td>
                                     <td>{this.getHeroName(heroes[player.hero_id])} ({player.account_id})</td>
                                     <td>{player.kills}</td>
