@@ -26,13 +26,15 @@ class FilterableMatchHistory extends Component {
             return
         }
 
+        let updatedPlayerList = [...this.state.playerList, player]
+
         this.setState({ 
-            playerList: [...this.state.playerList, player],
+            playerList: updatedPlayerList,
             matchData: []
         })
 
-        this.savePlayerListToLocalStorage(this.state.playerList);
-        this.updateMatchHistoryData(this.state.playerList)
+        this.savePlayerListToLocalStorage(updatedPlayerList);
+        this.updateMatchHistoryData(updatedPlayerList)
     }
 
     removePlayer(player) { 
@@ -76,8 +78,6 @@ class FilterableMatchHistory extends Component {
     fetchPlayerListFromLocalStorage() {
         let playerList = localStorage.playerList
 
-        console.log(playerList)
-
         if (playerList) {
             return JSON.parse(playerList)
         } else {
@@ -99,7 +99,6 @@ class FilterableMatchHistory extends Component {
     }
 
     updateMatchHistoryData(updatedPlayerList) {
-        console.log("updating match history data")
         const accountList = this.getAccountListCSV(updatedPlayerList)
 
         if (accountList.length === 0) {

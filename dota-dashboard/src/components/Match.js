@@ -45,7 +45,7 @@ class Match extends Component {
     }
 
     render() {
-        const startDate = moment(this.props.matchData.start_time_utc).format("DD/MM/YYYY hh:mma")
+        const startDate = moment(this.props.matchData.start_time_utc).format("DD/MM/YYYY h:mma")
         const team = determineTeam(this.props.matchData.player_slot)
         const win = determineWin(team, this.props.matchData.radiant_win)
         const winText = win ? "Victory" : "Defeat"

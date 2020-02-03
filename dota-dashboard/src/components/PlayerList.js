@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import PlayerSearch from "./PlayerSearch"
 import "../styles/player-list.scss"
 
 class PlayerList extends Component {
@@ -18,7 +17,6 @@ class PlayerList extends Component {
                         )
                     })}
                 </div>
-                <PlayerSearch addPlayer={(player) => this.props.addPlayer(player)} />
             </>
         )
     }
